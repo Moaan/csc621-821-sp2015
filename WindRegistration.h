@@ -20,7 +20,7 @@ class WindRegistration
 {
 		// Images are unsigned char pixel type but use floats internally 
 		typedef   double                       InternalPixelType;
-		typedef itk::Image< double, Dimension> InternalImageType;
+		typedef itk::Image< float, Dimension> InternalImageType;
 		
 		// Normalizes the images
 		typedef itk::NormalizeImageFilter<ImageType, InternalImageType> NormalizeFilterType;
