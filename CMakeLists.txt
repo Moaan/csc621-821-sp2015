@@ -1,18 +1,17 @@
-cmake_minimum_required(VERSION 2.8)
- 
-project(WindRegistration)
- 
+# This is the root ITK CMakeLists file.
+cmake_minimum_required(VERSION 2.4)
+if(COMMAND CMAKE_POLICY)
+  cmake_policy(SET CMP0003 NEW)
+endif()
+
+
+# This project is designed to be built outside the Insight source tree.
+project(ImageRegistration20)
+
+# Find ITK.
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
-if (ITKVtkGlue_LOADED)
-  find_package(VTK REQUIRED)
-  include(${VTK_USE_FILE})
-endif()
- 
-add_executable(WindRegistration MACOSX_BUNDLE WindRegistration_Test.cxx)
- 
-if( "${ITK_VERSION_MAJOR}" LESS 4 )
-  target_link_libraries(WindRegistration ITKReview ${ITK_LIBRARIES})
-else( "${ITK_VERSION_MAJOR}" LESS 4 )
-  target_link_libraries(WindRegistration ${ITK_LIBRARIES})
-endif( "${ITK_VERSION_MAJOR}" LESS 4 )
+
+add_executable(reg ImageRegistration20.cxx DICOMSeries.cpp)
+
+target_link_libraries(reg ${ITK_LIBRARIES})
